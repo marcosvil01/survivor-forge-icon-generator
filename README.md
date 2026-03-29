@@ -1,88 +1,44 @@
-# 🎮 Survivor Forge — Discord Role Icon Generator
+# Survivor Forge — Discord Role Icon Generator
 
-> A professional Discord Role Icon generator built for **FiveM RP servers**. Create stunning animated and static PNG icons with gradients, glow effects, presets, and live Discord preview — all in-browser.
-
-![Survivor Forge Screenshot](public/screenshot.png)
+**EN** | [ES](#es-generador-de-iconos-de-rol-para-discord)
 
 ---
 
-## ✨ Features
+Run locally with `npm install && npm run dev` — open `http://localhost:5173`.
 
-- **14 one-click presets** — Admin, VIP Gold, Survivor, Zombie, Moderador, Prestige, Leyenda, Supremo, Policia, Medico, Narco, Militar, Booster, + more
-- **Icon Library** — Browse thousands of icons (react-icons: Remix, Game, FontAwesome, Material) or search by name
-- **6 icon categories** — Staff · Zombie · Prestigio · Policia · Militar · EMS · Criminal
-- **Background types** — Transparent · Solid color · Gradient (angle control)
-- **4 light effects** — Glow · Neon · Shadow · Contorno (stroke outline)
-- **Transform controls** — Rotation slider (0–360°), Flip H / Flip V
-- **7 GIF animations** — Pulse Glow · Neon Flare · Spin · Rainbow · Breathe · Shake · Shimmer
-- **Animated GIF export** — Real GIF encoder (gifenc), 24 frames, works for Discord servers with Boost Level 3
-- **PNG export** — 64 / 128 / 256 px all from a 256 px canvas
-- **Copy to clipboard** — Instantly paste into Discord's upload dialog
-- **Live Discord previews** — Chat message mock (cozy mode) + Member list side panel
+A browser tool to create Discord role icons for FiveM RP servers. Pick an icon, style it, and export as PNG or animated GIF.
 
----
+**What you can do:**
+- Choose from thousands of icons across 7 categories (Staff, Zombie, Prestige, Police, Military, EMS, Criminal)
+- 14 quick presets (Admin, VIP Gold, Survivor, Narco, Booster…)
+- Solid, gradient or transparent backgrounds
+- Effects: Glow, Neon, Shadow, Stroke outline
+- Rotate and flip the icon
+- Animated GIF export with 7 animations (Pulse, Neon Flare, Spin, Rainbow, Breathe, Shake, Shimmer)
+- Export PNG at 64 / 128 / 256 px or copy directly to clipboard
+- Live Discord preview — chat view and member list
 
-## 🖥️ Tech Stack
-
-| Technology | Purpose |
-|---|---|
-| React 19 + Vite 8 | App framework & bundler |
-| TypeScript 5 | Type safety |
-| framer-motion v12 | Live animation preview |
-| react-icons | Icon libraries (Ri, Gi, Fa6, Md) |
-| html-to-image | Canvas capture for PNG & GIF frames |
-| gifenc | Pure-JS GIF encoder |
-| lucide-react | UI icons |
+> GIF role icons require Discord server Boost Level 3.
 
 ---
 
-## 🚀 Getting Started
+## ES — Generador de iconos de rol para Discord
 
-```bash
-# Install dependencies
-npm install
+Ejecuta con `npm install && npm run dev` — abre `http://localhost:5173`.
 
-# Start dev server
-npm run dev
+Herramienta local para crear iconos de rol de Discord para servidores FiveM RP. Elige un icono, personalízalo y expórtalo como PNG o GIF animado.
 
-# Build for production
-npm run build
-```
+**Qué puedes hacer:**
+- Miles de iconos en 7 categorías (Staff, Zombie, Prestigio, Policía, Militar, EMS, Criminal)
+- 14 presets rápidos (Admin, VIP Gold, Survivor, Narco, Booster…)
+- Fondos sólidos, degradados o transparentes
+- Efectos: Glow, Neon, Sombra, Contorno
+- Rotar y voltear el icono
+- Exportar GIF animado con 7 animaciones (Pulse, Neon Flare, Spin, Rainbow, Breathe, Shake, Shimmer)
+- Exportar PNG a 64 / 128 / 256 px o copiar al portapapeles
+- Preview real de Discord — vista de chat y lista de miembros
 
-Open `http://localhost:5173` in your browser.
-
----
-
-## 📦 Export Formats
-
-| Format | Sizes | Notes |
-|---|---|---|
-| PNG | 64 · 128 · 256 px | Transparent background supported |
-| GIF | 64 · 128 · 256 px | Needs Discord Boost Lvl 3 · 24 frames · ~1.2s loop |
-
----
-
-## 🎨 Icon Categories
-
-| Category | Icons |
-|---|---|
-| Staff | Shields, crowns, badges |
-| Zombie | Skulls, biohazard, zombie hands |
-| Prestigio | Diamonds, trophies, gold |
-| Policia | Police badge, handcuffs, car |
-| Militar | Military tech, medals, weapons |
-| EMS | Hospital cross, first aid, fire |
-| Criminal | Skull, mask, dagger, chains |
-
----
-
-## 📄 License
-
-MIT — free to use, modify, and distribute.
-
----
-
-> Designed for **Zona Muerta RP** FiveM server community.
+> Los iconos de rol GIF requieren Boost Nivel 3 en el servidor de Discord.
 
 ## Expanding the ESLint configuration
 
