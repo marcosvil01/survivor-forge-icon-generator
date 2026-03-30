@@ -1089,14 +1089,18 @@ export default function TemplateCreator() {
       </aside>
 
       {/* ═══════════════════════════════════════════════════════
-         PREVIEW — Fake Discord sidebar
+         PREVIEW — Pixel-perfect Discord sidebar replica
          ═══════════════════════════════════════════════════════ */}
       <main className="tool-stage tc-preview-stage">
-        <div className="tc-preview-header">
-          <div className="tc-server-icon">{T.icon}</div>
-          <div className="tc-server-info">
-            <h3>{T.name}</h3>
-            <span>{totalChannels} canales · {T.roles.length} roles · {T.categories.length} categorías</span>
+        {/* ── Server banner header ── */}
+        <div className="tc-prev-banner">
+          <div className="tc-prev-banner-bg" />
+          <div className="tc-prev-banner-content">
+            <div className="tc-server-icon">{T.icon}</div>
+            <div className="tc-server-info">
+              <h3>{T.name}</h3>
+              <span>{totalChannels} canales · {T.roles.length} roles · {T.categories.length} categorías</span>
+            </div>
           </div>
         </div>
 
@@ -1104,27 +1108,39 @@ export default function TemplateCreator() {
           {/* Boost bar */}
           {T.boostBar && (
             <div className="tc-boost-bar">
-              <Zap size={13} /> Boosteado · Nivel 2
+              <Zap size={13} /> <span>Nivel 2 de mejoras desbloqueado!</span>
+              <span className="tc-boost-count">🚀 7 Boosts</span>
             </div>
           )}
 
-          {/* Channel list */}
+          {/* ── Channel list — Discord exact replica ── */}
           <div className="tc-server-channels">
             {T.categories.map(cat => (
               <div key={cat.id} className="tc-prev-category">
                 <div className="tc-prev-cat-header" onClick={() => updateCat(cat.id, c => ({ ...c, collapsed: !c.collapsed }))}>
-                  <ChevronDown size={10} className={cat.collapsed ? "tc-prev-rotate" : ""} />
-                  <span>{cat.emoji} {cat.name.toUpperCase()}</span>
+                  <ChevronDown size={10} className={`tc-prev-cat-arrow ${cat.collapsed ? "tc-prev-rotate" : ""}`} />
+                  <span className="tc-prev-cat-label">{cat.name.toLowerCase()}</span>
+                  <button className="tc-prev-cat-plus" onClick={e => { e.stopPropagation(); addChannel(cat.id); }} title="Crear canal">
+                    <Plus size={14} />
+                  </button>
                 </div>
                 {!cat.collapsed && cat.channels.map(c => {
                   const CIcon = CHANNEL_ICONS[c.type];
+                  const isVoice = c.type === "voice" || c.type === "stage";
                   return (
-                    <div key={c.id} className={`tc-prev-channel ${c.hidden ? "tc-prev-hidden" : ""} ${c.locked ? "tc-prev-locked" : ""}`}>
-                      <CIcon size={16} className="tc-prev-ch-icon" />
+                    <div
+                      key={c.id}
+                      className={`tc-prev-channel ${c.hidden ? "tc-prev-hidden" : ""} ${c.locked ? "tc-prev-locked" : ""}`}
+                      title={c.topic || undefined}
+                    >
+                      <CIcon size={18} className="tc-prev-ch-icon" />
                       {c.emoji && <span className="tc-prev-ch-emoji">{c.emoji}</span>}
-                      <span className="tc-prev-ch-name">{c.type === "voice" || c.type === "stage" ? c.name : c.name}</span>
-                      {c.hidden && <EyeOff size={11} className="tc-prev-ch-flag" />}
-                      {c.locked && <Lock size={11} className="tc-prev-ch-flag" />}
+                      {c.emoji && !isVoice && <span className="tc-prev-ch-dot">·</span>}
+                      <span className="tc-prev-ch-name">{isVoice ? c.name : c.name}</span>
+                      <div className="tc-prev-ch-actions-hover">
+                        {c.hidden && <EyeOff size={14} className="tc-prev-ch-flag" />}
+                        {c.locked && <Lock size={14} className="tc-prev-ch-flag" />}
+                      </div>
                     </div>
                   );
                 })}
@@ -1132,7 +1148,7 @@ export default function TemplateCreator() {
             ))}
           </div>
 
-          {/* Role list */}
+          {/* ── Roles section ── */}
           <div className="tc-prev-roles-section">
             <div className="tc-prev-roles-title">
               <Shield size={13} /> ROLES — {T.roles.length}
@@ -1145,6 +1161,37 @@ export default function TemplateCreator() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* ── Members preview (fake) ── */}
+          <div className="tc-prev-members-section">
+            <div className="tc-prev-roles-title">
+              <Users size={13} /> MIEMBROS ONLINE — 42
+            </div>
+            <div className="tc-prev-member-list">
+              {T.roles.filter(r => r.hoist).slice(0, 5).map(r => (
+                <div key={r.id} className="tc-prev-member-group">
+                  <div className="tc-prev-member-group-title" style={{ color: r.color }}>{r.name} — 1</div>
+                  <div className="tc-prev-member">
+                    <div className="tc-prev-member-avatar" style={{ background: r.color }} />
+                    <span className="tc-prev-member-name" style={{ color: r.color }}>Usuario</span>
+                    <span className="tc-prev-member-status">🟢</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Bottom user bar ── */}
+        <div className="tc-prev-user-bar">
+          <div className="tc-prev-user-avatar-small" />
+          <div className="tc-prev-user-info">
+            <span className="tc-prev-user-name">TuUsuario</span>
+            <span className="tc-prev-user-tag">Online</span>
+          </div>
+          <div className="tc-prev-user-icons">
+            <Settings size={16} />
           </div>
         </div>
       </main>

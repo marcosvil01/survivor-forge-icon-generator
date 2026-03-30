@@ -1778,30 +1778,41 @@ body {
 .tc-export-header span { font-size: 11px; color: var(--ui-text2); }
 .tc-export-btns { display: flex; gap: 4px; flex-shrink: 0; }
 
-/* ─── Preview (right panel) ──────────────────────── */
+/* ─── Preview (right panel) — Discord exact replica ──────────────────────── */
 .tc-preview-stage {
   display: flex !important;
   flex-direction: column !important;
   overflow: hidden !important;
-  background: #1e1f22 !important;
+  background: #2b2d31 !important;
 }
 
-.tc-preview-header {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px 18px;
-  background: #2b2d31;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+/* Banner header */
+.tc-prev-banner {
+  position: relative;
   flex-shrink: 0;
+  overflow: hidden;
+}
+.tc-prev-banner-bg {
+  height: 80px;
+  background: linear-gradient(135deg, #5865f2 0%, #eb459e 50%, #fee75c 100%);
+  opacity: 0.6;
+}
+.tc-prev-banner-content {
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 18px 14px;
+  margin-top: -24px;
+  position: relative; z-index: 1;
 }
 .tc-server-icon {
-  width: 44px; height: 44px; border-radius: 16px;
-  background: linear-gradient(135deg, #5865f2, #eb459e);
+  width: 48px; height: 48px; border-radius: 16px;
+  background: #313338;
+  border: 4px solid #2b2d31;
   display: flex; align-items: center; justify-content: center;
   font-size: 22px; flex-shrink: 0;
 }
 .tc-server-info h3 {
   font-size: 15px; font-weight: 700; color: #fff;
-  margin: 0 0 2px;
+  margin: 0 0 1px;
 }
 .tc-server-info span {
   font-size: 11px; color: #949ba4;
@@ -1810,56 +1821,109 @@ body {
 .tc-discord-preview {
   flex: 1; overflow-y: auto;
   background: #2b2d31;
+  padding-bottom: 16px;
 }
 
 /* Boost bar */
 .tc-boost-bar {
   display: flex; align-items: center; gap: 6px;
-  padding: 6px 16px;
-  background: linear-gradient(90deg, rgba(244,127,255,0.1), transparent);
-  border-bottom: 1px solid rgba(244,127,255,0.1);
-  color: #f47fff; font-size: 11px; font-weight: 600;
+  padding: 8px 16px;
+  background: linear-gradient(90deg, rgba(244,127,255,0.08), rgba(244,127,255,0.02));
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: #f47fff; font-size: 12px; font-weight: 500;
+}
+.tc-boost-count {
+  margin-left: auto;
+  font-size: 11px; opacity: 0.7;
 }
 
 /* Server channels preview */
-.tc-server-channels { padding: 8px 0; }
+.tc-server-channels { padding: 8px 0 4px; }
 
-.tc-prev-category { margin-bottom: 4px; }
+.tc-prev-category { margin-bottom: 2px; }
 .tc-prev-cat-header {
-  display: flex; align-items: center; gap: 4px;
-  padding: 8px 8px 2px 16px;
-  font-size: 11px; font-weight: 800; letter-spacing: 0.02em;
+  display: flex; align-items: center; gap: 2px;
+  padding: 16px 8px 4px 4px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
   color: #949ba4; cursor: pointer; user-select: none;
-  text-transform: uppercase;
 }
 .tc-prev-cat-header:hover { color: #dbdee1; }
-.tc-prev-rotate { transform: rotate(-90deg); transition: transform 0.15s; }
+.tc-prev-cat-header:hover .tc-prev-cat-plus { opacity: 1; }
+.tc-prev-cat-arrow {
+  flex-shrink: 0;
+  transition: transform 0.15s;
+  margin-right: 2px;
+}
+.tc-prev-rotate { transform: rotate(-90deg); }
+.tc-prev-cat-label { flex: 1; text-transform: lowercase; }
+.tc-prev-cat-plus {
+  display: flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px;
+  background: none; border: none;
+  color: #949ba4; cursor: pointer;
+  opacity: 0; transition: opacity 0.15s;
+  border-radius: 3px; flex-shrink: 0;
+}
+.tc-prev-cat-plus:hover { color: #dbdee1; }
 
+/* ── Channel row (Discord exact) ── */
 .tc-prev-channel {
-  display: flex; align-items: center; gap: 6px;
-  padding: 5px 10px 5px 24px;
-  border-radius: 4px; margin: 0 8px;
-  cursor: pointer; transition: background 0.1s;
-  color: #949ba4; font-size: 14px;
+  display: flex; align-items: center; gap: 0;
+  padding: 6px 8px 6px 8px;
+  border-radius: 4px; margin: 1px 8px;
+  cursor: pointer; transition: background 0.08s;
+  color: #80848e; font-size: 15px;
+  position: relative;
+  min-height: 32px;
 }
-.tc-prev-channel:hover { background: rgba(255,255,255,0.04); color: #dbdee1; }
-.tc-prev-ch-icon { flex-shrink: 0; }
-.tc-prev-ch-emoji { font-size: 14px; flex-shrink: 0; }
-.tc-prev-ch-name {
-  font-size: 14px; flex: 1; font-weight: 500;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.tc-prev-channel:hover {
+  background: rgba(255,255,255,0.04);
+  color: #dbdee1;
 }
-.tc-prev-ch-flag { opacity: 0.5; flex-shrink: 0; }
+.tc-prev-channel:hover .tc-prev-ch-actions-hover { opacity: 1; }
 
-.tc-prev-hidden { opacity: 0.4; }
+.tc-prev-ch-icon {
+  flex-shrink: 0;
+  margin-right: 6px;
+  color: #80848e;
+  width: 20px; height: 20px;
+}
+.tc-prev-channel:hover .tc-prev-ch-icon { color: #dbdee1; }
+
+.tc-prev-ch-emoji {
+  font-size: 16px; flex-shrink: 0;
+  line-height: 1;
+}
+.tc-prev-ch-dot {
+  margin: 0 5px;
+  color: #4e5058;
+  font-size: 14px; font-weight: 700;
+  flex-shrink: 0;
+}
+.tc-prev-ch-name {
+  font-size: 15px; flex: 1; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  color: inherit;
+  line-height: 20px;
+}
+
+/* Hover actions on channel */
+.tc-prev-ch-actions-hover {
+  display: flex; align-items: center; gap: 4px;
+  opacity: 0; transition: opacity 0.1s;
+  flex-shrink: 0; margin-left: 4px;
+}
+.tc-prev-ch-flag { color: #949ba4; }
+
+.tc-prev-hidden { opacity: 0.35; }
 .tc-prev-hidden .tc-prev-ch-name { font-style: italic; }
-.tc-prev-locked .tc-prev-ch-name { color: #faa61a; }
+.tc-prev-locked .tc-prev-ch-icon { color: #faa61a; }
 
 /* Roles section in preview */
 .tc-prev-roles-section {
-  padding: 16px;
+  padding: 12px 16px;
   border-top: 1px solid rgba(255,255,255,0.04);
-  margin-top: 8px;
+  margin-top: 4px;
 }
 .tc-prev-roles-title {
   display: flex; align-items: center; gap: 6px;
@@ -1872,14 +1936,77 @@ body {
 }
 .tc-prev-role {
   display: flex; align-items: center; gap: 5px;
-  padding: 3px 8px; border-radius: 4px;
-  border: 1px solid; font-size: 12px;
+  padding: 4px 10px; border-radius: 4px;
+  border: 1px solid; font-size: 12px; font-weight: 500;
   color: #dbdee1; background: rgba(255,255,255,0.04);
+  transition: background 0.1s;
 }
+.tc-prev-role:hover { background: rgba(255,255,255,0.08); }
 .tc-prev-role-dot {
-  width: 10px; height: 10px; border-radius: 50%;
+  width: 12px; height: 12px; border-radius: 50%;
   flex-shrink: 0;
 }
+
+/* ── Members section ── */
+.tc-prev-members-section {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.tc-prev-member-list {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.tc-prev-member-group { margin-bottom: 4px; }
+.tc-prev-member-group-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  padding: 8px 0 4px; opacity: 0.85;
+}
+.tc-prev-member {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 6px; border-radius: 4px;
+  transition: background 0.1s;
+}
+.tc-prev-member:hover { background: rgba(255,255,255,0.04); }
+.tc-prev-member-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  flex-shrink: 0; opacity: 0.7;
+}
+.tc-prev-member-name {
+  font-size: 13px; font-weight: 500;
+  flex: 1;
+}
+.tc-prev-member-status {
+  font-size: 8px; flex-shrink: 0;
+}
+
+/* ── User bar (bottom) ── */
+.tc-prev-user-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px;
+  background: #1e1f22;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.tc-prev-user-avatar-small {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, #5865f2, #57f287);
+  flex-shrink: 0;
+}
+.tc-prev-user-info {
+  display: flex; flex-direction: column; flex: 1;
+}
+.tc-prev-user-name {
+  font-size: 13px; font-weight: 600; color: #fff;
+  line-height: 1.2;
+}
+.tc-prev-user-tag {
+  font-size: 11px; color: #949ba4;
+}
+.tc-prev-user-icons {
+  display: flex; gap: 6px; color: #949ba4;
+  cursor: pointer;
+}
+.tc-prev-user-icons:hover { color: #dbdee1; }
 
 /* Scrollbar for preview */
 .tc-discord-preview::-webkit-scrollbar { width: 6px; }
