@@ -784,7 +784,7 @@ export function IconGenerator() {
                         onClick={() => handleIconifySelect(iconId)}
                       >
                         <img
-                          src={`https://api.iconify.design/${prefix}/${name}.svg?height=22&color=${encodeURIComponent(iconColor)}`}
+                          src={`https://api.iconify.design/${prefix}/${name}.svg?height=22${iconifyColorOnly ? '' : `&color=${encodeURIComponent(iconColor)}`}`}
                           width="22" height="22"
                           alt={name}
                           loading="lazy"

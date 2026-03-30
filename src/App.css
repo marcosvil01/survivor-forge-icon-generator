@@ -136,6 +136,8 @@ body {
   max-height: 240px;
   overflow-y: auto;
   padding-right: 4px;
+  contain: layout style;
+  content-visibility: auto;
 }
 
 .v6-icon-btn {
@@ -148,7 +150,8 @@ body {
   align-items: center;
   cursor: pointer;
   color: #4e5058;
-  transition: 0.2s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  will-change: background, border-color;
 }
 
 .v6-icon-btn:hover {
