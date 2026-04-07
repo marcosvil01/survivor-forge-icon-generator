@@ -514,8 +514,8 @@ export function IconGenerator() {
       const dataUrl = await toPng(canvasRef.current, {
         cacheBust: true,
         pixelRatio: exportSize / 256,
-        style: { transform: 'none', outline: 'none' },
-        backgroundColor: 'rgba(0,0,0,0)',
+        style: { transform: 'none', outline: 'none', boxShadow: 'none' },
+        backgroundColor: bgType === 'transparent' ? 'rgba(0,0,0,0)' : undefined,
       });
       const a = document.createElement('a');
       a.download = `role-icon-${selectedIconName}-${exportSize}px.png`;
@@ -527,7 +527,7 @@ export function IconGenerator() {
     } finally {
       setIsExporting(false);
     }
-  }, [selectedIconName, exportSize]);
+  }, [selectedIconName, exportSize, bgType]);
 
   const handleCopyClipboard = useCallback(async () => {
     if (!canvasRef.current) return;
@@ -535,8 +535,8 @@ export function IconGenerator() {
       const dataUrl = await toPng(canvasRef.current, {
         cacheBust: true,
         pixelRatio: exportSize / 256,
-        style: { transform: 'none', outline: 'none' },
-        backgroundColor: 'rgba(0,0,0,0)',
+        style: { transform: 'none', outline: 'none', boxShadow: 'none' },
+        backgroundColor: bgType === 'transparent' ? 'rgba(0,0,0,0)' : undefined,
       });
       const res  = await fetch(dataUrl);
       const blob = await res.blob();
@@ -546,7 +546,7 @@ export function IconGenerator() {
     } catch (err) {
       console.error(err);
     }
-  }, [exportSize]);
+  }, [exportSize, bgType]);
 
   const handleGifExport = useCallback(async () => {
     if (!canvasRef.current || !iconRef.current) return;
@@ -574,8 +574,8 @@ export function IconGenerator() {
         const canvas   = await toCanvas(canvasRef.current!, {
           pixelRatio: exportSize / 256,
           cacheBust: false,
-          style: { transform: 'none', outline: 'none' },
-          backgroundColor: 'rgba(0,0,0,0)',
+          style: { transform: 'none', outline: 'none', boxShadow: 'none' },
+          backgroundColor: bgType === 'transparent' ? 'rgba(0,0,0,0)' : undefined,
         });
         const ctx      = canvas.getContext('2d')!;
         const imgData  = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -613,7 +613,7 @@ export function IconGenerator() {
       setIsExporting(false);
       setExportProgress(0);
     }
-  }, [selectedIconName, exportSize, gifAnimation, gifFrames, glowColor, glowSize, iconRotation, flipH, flipV]);
+  }, [selectedIconName, exportSize, bgType, gifAnimation, gifFrames, glowColor, glowSize, iconRotation, flipH, flipV]);
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="v6-layout">

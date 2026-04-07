@@ -240,9 +240,8 @@ body {
   background: transparent;
   position: relative;
   overflow: hidden;
-  /* Guideline circle for Discord role icons */
+  /* Guideline dashed outline — removed during export */
   outline: 1px dashed rgba(255,255,255,0.1);
-  box-shadow: 0 0 40px rgba(0,0,0,0.4);
 }
 
 /* REAL DISCORD MOCKUP (Cozy Mode) */
@@ -547,13 +546,14 @@ body {
 /* GIF mode canvas outline */
 .v6-canvas-master.gif-mode {
   outline: 1.5px dashed rgba(235,69,158,0.4);
-  box-shadow: 0 0 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(235,69,158,0.15);
 }
 
 /* Canvas + checker wrapper */
 .v6-canvas-wrap {
   position: relative;
   display: inline-flex;
+  border-radius: inherit;
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
 }
 
 .v6-checker-bg {
@@ -564,6 +564,7 @@ body {
   background-color: #18191c;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 
 .v6-canvas-master {
